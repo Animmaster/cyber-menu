@@ -1,0 +1,272 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: "Montserrat";
+  background: #fff;
+}
+
+a,
+p,
+span {
+  text-transform: uppercase;
+  font-size: 10px;
+  line-height: 100%;
+  cursor: pointer;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2em;
+  z-index: 2;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+.menu-container {
+  position: fixed;
+  top: 50%;
+  left: -100%;
+  transform: translateY(-50%);
+  padding: 1.5em;
+  width: 45%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  transition: left 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.menu {
+  width: 100%;
+  height: 100%;
+  background: #000;
+  color: #fff;
+  border-radius: 20px;
+  display: flex;
+  overflow: hidden;
+}
+
+.menu-main {
+  flex: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid rgba(255, 255, 255, 0.125);
+}
+
+.menu-sidebar {
+  flex: 0.2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.menu-main .menu-top {
+  display: flex;
+  border-top: 1px solid rgba(255, 255, 255, 0.125);
+}
+
+.menu-main .menu-bottom {
+  display: flex;
+  flex-direction: column;
+}
+
+/* menu top */
+.menu-top-title {
+  flex: 1;
+  padding: 2em;
+}
+
+.menu-top-content {
+  padding: 1.25em 0;
+  flex: 4;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-item {
+  position: relative;
+  left: -100px;
+  padding: 0.5em 0;
+  transition: left 0.3s;
+}
+
+.menu-item-link {
+  position: relative;
+}
+
+.menu-item-link a {
+  position: relative;
+  text-decoration: none;
+  color: #fff;
+  font-size: 48px;
+
+  letter-spacing: -2px;
+  font-weight: bold;
+  padding-left: 10px;
+  z-index: 2;
+}
+
+.menu-item#active .menu-item-link a {
+  color: #000;
+}
+
+.menu-item:hover .menu-item-link a {
+  color: #000;
+}
+
+.bg-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: #fff;
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 95% 100%, 0 100%, 0% 50%);
+  z-index: 0;
+  opacity: 0;
+}
+
+.menu-item:hover .bg-hover {
+  opacity: 1;
+}
+
+.menu-item#active .bg-hover {
+  background-color: aquamarine;
+  opacity: 1;
+}
+
+.menu-item span {
+  position: absolute;
+  top: 0px;
+  padding: 1.5em 0;
+}
+
+.menu-item span .word .char {
+  color: #000;
+}
+
+.menu-item#active span .word .char {
+  color: #fff;
+}
+
+.menu-item:hover span .word .char.char-active {
+  color: #fff;
+}
+.menu-item span .word .char.char-active {
+  color: #000;
+}
+
+/* menu bottom */
+.menu-sub-item {
+  width: 100%;
+  display: flex;
+  gap: 1em;
+  border-top: 1px solid rgba(255, 255, 255, 0.125);
+  padding: 1em 2em;
+}
+
+.menu-title {
+  flex: 1;
+}
+
+.menu-content {
+  flex: 4;
+  padding-left: 2em;
+}
+
+.menu-content p {
+  position: relative;
+  width: max-content;
+  padding: 0.125em;
+}
+
+.menu-content p::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: #fff;
+  mix-blend-mode: difference;
+}
+
+@keyframes hoverEffect {
+  0%,
+  100% {
+    width: 0%;
+    left: 0;
+  }
+  50% {
+    width: 100%;
+    left: 0;
+  }
+  51% {
+    left: auto;
+    right: 0;
+    width: 100%;
+  }
+  100% {
+    left: auto;
+    right: 0;
+    width: 0%;
+  }
+}
+
+.menu-content p:hover::after {
+  animation: hoverEffect 1s ease forwards;
+}
+
+/* menu sidebar */
+.close-btn,
+.logo {
+  padding: 1.5em;
+}
+
+.close-btn {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.125);
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .menu-container {
+    width: 100%;
+  }
+
+  .menu-top-content {
+    padding: 1.5em;
+  }
+
+  .menu-top-title,
+  .menu-item span,
+  .menu-title,
+  .bg-hover {
+    display: none;
+  }
+
+  .menu-item:hover .menu-item-link a,
+  .menu-item#active .menu-item-link a {
+    color: #fff;
+  }
+
+  .menu-sub-item {
+    padding: 1em 0;
+  }
+}
